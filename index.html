@@ -528,6 +528,25 @@
   .card .stack{font-family:var(--mono); font-size:12px; color:var(--cyan); margin-bottom:16px; display:block;}
   .card ul{margin:0; padding-left:18px; color:#C7D2DB; font-size:14px;}
   .card ul li{margin-bottom:7px;}
+
+  .card-link{
+    display:inline-flex; align-items:center; gap:7px;
+    margin-top:16px;
+    font-family:var(--mono); font-size:12.5px; font-weight:500;
+    color:var(--cyan); text-decoration:none;
+    padding-bottom:2px;
+    border-bottom:1px solid transparent;
+    transition:border-color .2s var(--ease), gap .2s var(--ease);
+  }
+  .card-link:hover{border-color:var(--cyan); gap:10px;}
+  .card-link svg{
+    width:12px; height:12px; flex-shrink:0;
+    stroke:currentColor; fill:none; stroke-width:1.8;
+    stroke-linecap:round; stroke-linejoin:round;
+    transition:transform .2s var(--ease);
+  }
+  .card-link:hover svg{transform:translate(1px, -1px);}
+
   @media (max-width:480px){
     .card{padding:22px;}
   }
@@ -794,20 +813,25 @@
     <div class="section-head"><span class="section-num">04</span><h2>Projects</h2></div>
     <div class="proj-grid reveal-stagger">
       <div class="card stagger-child" data-tilt>
+        <h3>PR Sense</h3>
+        <span class="stack">Java · Spring Boot · PostgreSQL · Gemini API · GitHub Apps</span>
+        <ul>
+          <li>Built and deployed a publicly installable GitHub App that reviews pull requests with AI and posts inline comments on the exact lines that need attention — any GitHub account can install it with zero configuration.</li>
+          <li>Implemented two-stage GitHub App auth (RS256 JWT → per-installation tokens with caching), a unified-diff parser for line-accurate comments, and commit-SHA idempotency via a PostgreSQL unique constraint.</li>
+          <li>Ran reviews asynchronously on a dedicated thread pool to meet GitHub's 10-second webhook timeout; containerized with a two-stage Docker build and deployed on Render.</li>
+        </ul>
+        <a class="card-link" href="https://github.com/apps/pr-sense" target="_blank" rel="noopener">
+          Install on GitHub
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4"/><path d="M6 4h6v6"/></svg>
+        </a>
+      </div>
+      <div class="card stagger-child" data-tilt>
         <h3>Communicator</h3>
         <span class="stack">ASP.NET Core · Angular · SQL Server · SignalR · OpenVidu</span>
         <ul>
           <li>Contributed full-stack to a production-grade chat platform; implemented live messaging via SignalR with real-time delivery and read receipts.</li>
           <li>Designed and built the Calls module — real-time audio/video calling using OpenVidu with SignalR signaling and an Angular call-screen UI.</li>
           <li>Modelled and optimized the SQL Server schema for message persistence, call history, and user sessions.</li>
-        </ul>
-      </div>
-      <div class="card stagger-child" data-tilt>
-        <h3>Task Tracker</h3>
-        <span class="stack">ASP.NET Core · Angular · SQL Server · REST API</span>
-        <ul>
-          <li>Built a full-stack employee time-tracking system with an interactive calendar for logging hours across tasks and projects.</li>
-          <li>Designed RESTful APIs and optimized SQL Server data models for timesheet reporting and productivity monitoring.</li>
         </ul>
       </div>
     </div>
@@ -843,19 +867,19 @@
       <div class="skill-card stagger-child">
         <h4>Cloud &amp; DevOps</h4>
         <div class="chip-row">
-          <span class="chip">Azure</span><span class="chip">CI/CD</span><span class="chip">Docker</span><span class="chip">Git</span><span class="chip">GitHub</span>
+          <span class="chip">Azure</span><span class="chip">CI/CD</span><span class="chip">Docker</span><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Render</span>
         </div>
       </div>
       <div class="skill-card stagger-child">
         <h4>Data &amp; Caching</h4>
         <div class="chip-row">
-          <span class="chip">SQL Server</span><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span>
+          <span class="chip">PostgreSQL</span><span class="chip">SQL Server</span><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span>
         </div>
       </div>
       <div class="skill-card stagger-child">
         <h4>Platforms &amp; Testing</h4>
         <div class="chip-row">
-          <span class="chip">Electron</span><span class="chip">Capacitor</span><span class="chip">PWA</span><span class="chip">Playwright</span><span class="chip">Unit Testing</span>
+          <span class="chip">Electron</span><span class="chip">Capacitor</span><span class="chip">PWA</span><span class="chip">Playwright</span><span class="chip">Unit Testing</span><span class="chip">Gemini API</span>
         </div>
       </div>
     </div>
@@ -916,7 +940,6 @@
 <script>
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Console log animation
   const logs = [
     { ts: '00:00:01', tag: '[SIGNALR]', msg: 'Hub connected — session negotiated' },
     { ts: '00:00:02', tag: '[OPENVIDU]', msg: 'Call room joined — 1 of 50–200 peers' },
@@ -957,9 +980,6 @@
     });
   }
 
-  // Reliable in-page navigation: smooth-scrolls to the target section,
-  // correctly offset below the sticky nav, and works even if the
-  // browser's native anchor jump is suppressed by the surrounding page.
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     const targetId = link.getAttribute('href');
     if (!targetId || targetId === '#') return;
@@ -977,7 +997,6 @@
   });
 
 
-  // Scroll-reveal via IntersectionObserver (replays every time a section re-enters view)
   const revealEls = document.querySelectorAll('.reveal');
   if (!reduceMotion && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
@@ -991,13 +1010,11 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
     revealEls.forEach(el => io.observe(el));
 
-    // stagger children delay
     document.querySelectorAll('.reveal-stagger .stagger-child').forEach((child, i) => {
       const localIndex = Array.from(child.parentElement.children).indexOf(child);
       child.style.transitionDelay = (localIndex * 0.08) + 's';
     });
 
-    // chip pop stagger delay (index across whole page for a subtle cascading feel)
     document.querySelectorAll('.chip').forEach((chip, i) => {
       chip.style.animationDelay = (0.15 + (i % 8) * 0.05) + 's';
     });
@@ -1006,7 +1023,6 @@
     document.querySelectorAll('.stagger-child').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
   }
 
-  // Count-up numbers (re-animates every time the metric re-enters view)
   const countEls = document.querySelectorAll('[data-count]');
   function animateCount(el){
     const target = parseInt(el.getAttribute('data-count'), 10);
@@ -1044,7 +1060,6 @@
     countEls.forEach(el => countIo.observe(el));
   }
 
-  // Active nav link on scroll
   const sections = ['about','strengths','experience','projects','skills','contact'].map(id => document.getElementById(id)).filter(Boolean);
   const navAnchors = document.querySelectorAll('#navLinks a');
   if ('IntersectionObserver' in window) {
@@ -1062,7 +1077,6 @@
     sections.forEach(sec => navIo.observe(sec));
   }
 
-  // Scroll progress bar
   const progressBar = document.getElementById('scrollProgress');
   function updateProgress(){
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -1073,7 +1087,6 @@
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
 
-  // Project card tilt + cursor spotlight (skip on touch devices)
   const canHover = window.matchMedia('(hover: hover)').matches;
   if (canHover && !reduceMotion) {
     document.querySelectorAll('[data-tilt]').forEach(card => {
