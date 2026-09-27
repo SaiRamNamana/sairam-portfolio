@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Namana Naga Sai Ram — Full-Stack Software Development Engineer</title>
-<meta name="description" content="Portfolio of Namana Naga Sai Ram, Full-Stack Software Development Engineer specializing in real-time systems with Angular, ASP.NET Core and Java Spring Boot.">
+<meta name="description" content="Portfolio of Namana Naga Sai Ram, Full-Stack Software Development Engineer specializing in real-time and collaborative systems with Angular, ASP.NET Core and Java Spring Boot.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='9' fill='%230F1720'/%3E%3Cpath d='M22 8 L8 32' stroke='%23263544' stroke-width='2'/%3E%3Cpath d='M22 8 L36 32' stroke='%23263544' stroke-width='2'/%3E%3Cpath d='M8 32 L36 32' stroke='%23263544' stroke-width='2'/%3E%3Ccircle cx='22' cy='8' r='3.4' fill='%230F1720' stroke='%234CC9C0' stroke-width='2'/%3E%3Ccircle cx='8' cy='32' r='3.4' fill='%230F1720' stroke='%23E8A33D' stroke-width='2'/%3E%3Ccircle cx='36' cy='32' r='3.4' fill='%230F1720' stroke='%234CC9C0' stroke-width='2'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Namana Naga Sai Ram — Full-Stack Software Development Engineer">
-<meta property="og:description" content="Full-stack engineer shipping production real-time systems with Angular, ASP.NET Core, Java Spring Boot, SignalR, WebSockets, and OpenVidu.">
+<meta property="og:description" content="Full-stack engineer shipping production real-time and collaborative systems with Angular, ASP.NET Core, Java Spring Boot, SignalR, WebSockets, Yjs, and OpenVidu.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Namana Naga Sai Ram — Full-Stack Software Development Engineer">
-<meta name="twitter:description" content="Full-stack engineer shipping production real-time systems with Angular, ASP.NET Core, Java Spring Boot, SignalR, WebSockets, and OpenVidu.">
+<meta name="twitter:description" content="Full-stack engineer shipping production real-time and collaborative systems with Angular, ASP.NET Core, Java Spring Boot, SignalR, WebSockets, Yjs, and OpenVidu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -720,7 +720,7 @@
     <div class="section-head"><span class="section-num">01</span><h2>About</h2></div>
     <div class="about-grid">
       <div class="about-text">
-        <p>I work across the stack, but I gravitate toward the parts of an application that have to happen <em>right now</em> — a call connecting, a message arriving, a cache warming before a user notices the wait. At Snovasys, I own the Calls feature end-to-end: OpenVidu and SignalR wired together to keep 50–200 concurrent sessions signaling reliably in production.</p>
+        <p>I work across the stack, but I gravitate toward the parts of an application that have to happen <em>right now</em> — a call connecting, a message arriving, or multiple users editing the same state without conflicts. At Snovasys, I own the Calls feature end-to-end: OpenVidu and SignalR wired together to keep 50–200 concurrent sessions signaling reliably in production.</p>
         <p>Outside of shipping features, I package the same codebase for iOS, Android, and desktop with Capacitor and Electron, write Playwright regression suites, and deploy through Azure CI/CD. I've solved 293+ problems on LeetCode, which keeps the data-structures instincts sharp for whatever the stack throws at me.</p>
       </div>
       <div class="metric-list reveal-stagger">
@@ -825,6 +825,21 @@
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4"/><path d="M6 4h6v6"/></svg>
         </a>
       </div>
+
+      <div class="card stagger-child" data-tilt>
+        <h3>CollabDraw</h3>
+        <span class="stack">Angular · ASP.NET Core · SignalR · Yjs · CRDT · PostgreSQL · Docker</span>
+        <ul>
+          <li>Built a real-time collaborative whiteboard with <strong>Angular, ASP.NET Core, SignalR, WebSockets, and Yjs</strong>, supporting concurrent drawing, live cursor presence, and shared room state.</li>
+          <li>Implemented <strong>CRDT-based conflict-free synchronization</strong> with PostgreSQL persistence, supporting reconnects, out-of-order updates, and late-join room history without last-write-wins data loss.</li>
+          <li>Containerized and deployed the backend with <strong>Docker</strong> and exposed a live Vercel-hosted frontend for real-time multi-user collaboration.</li>
+        </ul>
+        <a class="card-link" href="https://collab-draw-frontend-lake.vercel.app/" target="_blank" rel="noopener">
+          Live Demo
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4"/><path d="M6 4h6v6"/></svg>
+        </a>
+      </div>
+
       <div class="card stagger-child" data-tilt>
         <h3>Communicator</h3>
         <span class="stack">ASP.NET Core · Angular · SQL Server · SignalR · OpenVidu</span>
