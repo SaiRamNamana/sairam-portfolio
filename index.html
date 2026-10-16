@@ -38,10 +38,10 @@ nav.links a:hover,nav.links a.active{color:var(--cyan)}
 @media(max-width:760px){.nav-toggle{display:block}nav.links{flex-direction:column;gap:0;position:fixed;top:calc(57px + env(safe-area-inset-top,0px));left:0;right:0;background:rgba(15,23,32,.98);border-bottom:0 solid var(--border);max-height:0;overflow:hidden;transition:max-height .3s var(--ease)}header.nav.menu-open nav.links{max-height:420px;border-bottom:1px solid var(--border)}nav.links a{padding:15px 24px;border-bottom:1px solid var(--border)}}
 .hero{padding-top:44px;padding-bottom:44px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
 .hero-rings{position:absolute;top:50%;right:-120px;transform:translateY(-50%);width:520px;height:520px;pointer-events:none;opacity:.5}
-.hero-rings circle{fill:none;stroke:var(--cyan);animation:ring 3.6s ease-out infinite}
+.hero-rings circle{fill:none;stroke:var(--cyan);r:230px;transform-box:fill-box;transform-origin:center;vector-effect:non-scaling-stroke;animation:ring 3.6s ease-out infinite}
 .hero-rings circle:nth-child(2){stroke:var(--amber);animation-delay:1.2s}
 .hero-rings circle:nth-child(3){animation-delay:2.4s}
-@keyframes ring{0%{r:20;opacity:.9}100%{r:230;opacity:0}}
+@keyframes ring{0%{transform:scale(.09);opacity:.9}100%{transform:scale(1);opacity:0}}
 .hero-content{position:relative;z-index:1}
 .eyebrow{font-family:var(--mono);font-size:13px;color:var(--amber);text-transform:uppercase;letter-spacing:.12em;margin-bottom:20px}
 h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,6.2vw,60px);line-height:1.05;margin:0 0 20px;letter-spacing:-.02em}
@@ -134,14 +134,14 @@ footer h2{font-size:30px}
 .contact-row{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-bottom:46px}
 .foot-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:24px}
 @media(max-width:480px){.contact-row{flex-direction:column}.foot-meta{flex-direction:column;text-align:center}}
-.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--cyan),var(--amber));z-index:80;pointer-events:none}
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--cyan),var(--amber));z-index:80;pointer-events:none}
 .stagger-child{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease),border-color .25s var(--ease)}
 .reveal.in .stagger-child{opacity:1;transform:none}
 .reveal.in .strength-card:hover,.reveal.in .skill-card:hover,.reveal.in .edu-card:hover{transform:translateY(-4px)}
-.brand-mark .node{animation:npulse 2.8s ease-in-out infinite}
+.brand-mark .node{transform-box:fill-box;transform-origin:center;animation:npulse 2.8s ease-in-out infinite}
 .brand-mark .n2{animation-delay:.65s}.brand-mark .n3{animation-delay:1.3s}
-@keyframes npulse{0%,100%{r:3}50%{r:4.3}}
-.brand-mark .pk{fill:var(--cyan);stroke:none;filter:drop-shadow(0 0 3px var(--cyan));animation:travel 2.6s linear infinite}
+@keyframes npulse{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
+.brand-mark .pk{fill:var(--cyan);stroke:none;animation:travel 2.6s linear infinite}
 .pk1{offset-path:path('M22 6 L6 34')}.pk2{offset-path:path('M22 6 L38 34');animation-delay:.87s!important}.pk3{offset-path:path('M6 34 L38 34');animation-delay:1.74s!important}
 @keyframes travel{0%{offset-distance:0%;opacity:0}8%{opacity:1}92%{opacity:1}100%{offset-distance:100%;opacity:0}}
 .kw{position:relative}
@@ -154,7 +154,7 @@ footer h2{font-size:30px}
 @keyframes draw{to{stroke-dashoffset:0}}
 .timeline{gap:0}.tl-item{padding-bottom:46px;position:relative}.tl-item:last-child{padding-bottom:0}
 .tl-rail{position:relative;background:var(--border)}
-.tl-rail::before{content:'';position:absolute;top:4px;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px var(--bg),0 0 0 0 rgba(76,201,192,.5);animation:rp 2.4s ease-out infinite}
+.tl-rail::before{content:'';position:absolute;top:4px;left:50%;transform:translateX(-50%);width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px var(--bg)}
 @keyframes rp{0%{box-shadow:0 0 0 4px var(--bg),0 0 0 0 rgba(76,201,192,.5)}70%{box-shadow:0 0 0 4px var(--bg),0 0 0 6px rgba(76,201,192,0)}100%{box-shadow:0 0 0 4px var(--bg),0 0 0 0 rgba(76,201,192,0)}}
 @media(min-width:641px){.tl-item{grid-template-columns:120px 1px 1fr}}
 .timeline .tl-item{opacity:0;transition:opacity .8s var(--ease),transform .8s var(--ease)}
@@ -169,7 +169,7 @@ footer h2{font-size:30px}
 .card.ready{transition:transform .15s ease-out,border-color .25s var(--ease),box-shadow .25s var(--ease)!important;transition-delay:0s!important}
 @media(prefers-reduced-motion:reduce){.timeline .tl-item,.tl-list li{opacity:1!important;transform:none!important}}
 @media(max-width:640px){.tl-item{padding-left:18px;border-left:2px solid var(--border);padding-bottom:38px}.tl-item::before{content:'';position:absolute;top:5px;left:-6px;width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px var(--bg)}.tl-rail{display:none}}
-.card{position:relative;overflow:hidden;will-change:transform}
+.card{position:relative;overflow:hidden}
 .card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(76,201,192,.16),transparent 55%);opacity:0;transition:opacity .3s var(--ease);pointer-events:none}
 .card:hover::before{opacity:1}
 .card>*{position:relative;z-index:1}
@@ -206,6 +206,7 @@ button.card-link{background:none;border:0;border-bottom:1px solid transparent;cu
 .totop svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
 .totop circle{fill:none;stroke-width:2.5}.totop .trk{stroke:var(--border)}.totop .prg{stroke:var(--cyan);stroke-linecap:round;stroke-dasharray:119.4;stroke-dashoffset:119.4}
 @media(prefers-reduced-motion:reduce){.intro{display:none}}
+@media(max-width:760px){header.nav{backdrop-filter:none;background:rgba(15,23,32,.97)}.reveal{transform:none;transition:opacity .5s}}
 </style>
 </head>
 <body>
@@ -416,21 +417,24 @@ q('.chip').forEach((c,i)=>{c.style.animationDelay=(.15+(i%8)*.05)+'s'});
 q('.tl-item').forEach(t=>{const r=document.createElement('div');r.className='tl-rail';t.children[0].after(r)});
 const ic=[['M4 20L4 14','M11 24L11 8','M18 20L18 6','M25 24L25 12','M30 18L30 15'],['M6 22L17 28L28 22L17 16Z','M6 15L17 21L28 15','M6 8L17 14L28 8L17 2Z'],['M4 26A13 13 0 0 1 30 26','M17 26L23 14'],['M17 3L29 8L29 17C29 24 24 28 17 31C10 28 5 24 5 17L5 8Z','M11 17L15 21L23 12']];
 q('.strength-card').forEach((c,i)=>c.insertAdjacentHTML('afterbegin','<svg class="strength-icon" viewBox="0 0 34 34" aria-hidden="true">'+ic[i].map(d=>'<path pathLength="100" d="'+d+'"/>').join('')+'</svg>'));
-if('IntersectionObserver' in window&&!rm){const o=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)e.target.classList.remove('in')}),{threshold:0});q('.reveal').forEach(e=>o.observe(e))}
+if('IntersectionObserver' in window&&!rm&&matchMedia('(hover: hover)').matches){const o=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)e.target.classList.remove('in')}),{threshold:0});q('.reveal').forEach(e=>o.observe(e))}
 function count(el){const t=+el.dataset.count,s=el.dataset.suffix||'',p=el.dataset.prefix||'';if(rm){el.textContent=p+t+s;return}const st=performance.now();(function f(n){const k=Math.min((n-st)/1200,1);el.textContent=p+((1-Math.pow(1-k,3))*t).toFixed(+el.dataset.dec||0)+s;if(k<1)requestAnimationFrame(f)})(st)}
 if('IntersectionObserver' in window){const co=new IntersectionObserver(es=>es.forEach(e=>{const el=e.target;if(e.isIntersecting)count(el);else if(!rm)el.textContent=(el.dataset.prefix||'')+'0'+(el.dataset.suffix||'')}),{threshold:.6});q('[data-count]').forEach(e=>co.observe(e))}
 const pb=document.getElementById('scrollProgress');
 function upd(){const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;pb.style.width=(h>0?scrollY/h*100:0)+'%'}
-addEventListener('scroll',upd,{passive:true});upd();
+
 if(matchMedia('(hover: hover)').matches&&!rm){q('.card').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;c.style.setProperty('--mx',x/r.width*100+'%');c.style.setProperty('--my',y/r.height*100+'%');c.style.transform='perspective(800px) rotateX('+((y/r.height-.5)*-8)+'deg) rotateY('+((x/r.width-.5)*8)+'deg) translateY(-4px)'});c.addEventListener('mouseleave',()=>{c.style.transform='perspective(800px) rotateX(0) rotateY(0) translateY(0)'})})}
 q('.tl-item').forEach((t,i)=>{t.querySelectorAll('li').forEach((l,j)=>{l.style.transitionDelay=(.35+j*.12)+'s'})});
-if('IntersectionObserver' in window&&!rm){const to=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('t-in',e.isIntersecting)),{threshold:.15});q('.tl-item').forEach(t=>to.observe(t))}else q('.tl-item').forEach(t=>t.classList.add('t-in'));
-q('.card').forEach(c=>{let tm;if(!('IntersectionObserver' in window))return;new IntersectionObserver(es=>es.forEach(e=>{clearTimeout(tm);if(e.isIntersecting)tm=setTimeout(()=>c.classList.add('ready'),1000);else c.classList.remove('ready')}),{threshold:.2}).observe(c)});
+if('IntersectionObserver' in window&&!rm){const to=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('t-in');else if(matchMedia('(hover: hover)').matches)e.target.classList.remove('t-in')}),{threshold:.15});q('.tl-item').forEach(t=>to.observe(t))}else q('.tl-item').forEach(t=>t.classList.add('t-in'));
+q('.card').forEach(c=>{let tm;if(!('IntersectionObserver' in window)||!matchMedia('(hover: hover)').matches)return;new IntersectionObserver(es=>es.forEach(e=>{clearTimeout(tm);if(e.isIntersecting)tm=setTimeout(()=>c.classList.add('ready'),1000);else c.classList.remove('ready')}),{threshold:.2}).observe(c)});
 const det=[['Live cursor presence and shared room state','CRDT sync with Yjs, so no last-write-wins data loss','Handles reconnects, out-of-order updates and late-join room history','Dockerized backend with a Vercel-hosted frontend'],['Two-stage GitHub App auth: RS256 JWT, then cached per-installation tokens','Unified-diff parser for line-accurate inline comments','Commit-SHA idempotency via a PostgreSQL unique constraint','Async reviews on a dedicated thread pool to meet GitHub’s 10-second webhook timeout','Two-stage Docker build, deployed on Render']];
 q('.card').forEach((c,i)=>{const f=document.createElement('div');f.className='face front';while(c.firstChild)f.appendChild(c.firstChild);const b=document.createElement('div');b.className='face back';b.innerHTML='<h3>Under the hood</h3><ul>'+det[i].map(t=>'<li>'+t+'</li>').join('')+'</ul><div class="links-row"><button type="button" class="card-link flip-btn">Back ↺</button></div>';const fi=document.createElement('div');fi.className='flip-inner';fi.append(f,b);c.appendChild(fi);const fb=document.createElement('button');fb.type='button';fb.className='card-link flip-btn';fb.textContent='More details ↻';f.querySelector('.links-row').appendChild(fb);c.querySelectorAll('.flip-btn').forEach(x=>x.addEventListener('click',()=>c.classList.toggle('flipped')))});
 const tt=document.getElementById('totop'),pg=tt.querySelector('.prg');
 function tup(){const h=document.documentElement.scrollHeight-innerHeight;pg.style.strokeDashoffset=119.4*(1-(h>0?scrollY/h:0));tt.classList.toggle('show',scrollY>400)}
-addEventListener('scroll',tup,{passive:true});tup();
+let H=0,tk=false;function meas(){H=document.documentElement.scrollHeight-innerHeight}
+function frame(){tk=false;const p=H>0?scrollY/H:0;pb.style.transform='scaleX('+p+')';pg.style.strokeDashoffset=119.4*(1-p);tt.classList.toggle('show',scrollY>400)}
+function onS(){if(!tk){tk=true;requestAnimationFrame(frame)}}
+meas();frame();addEventListener('scroll',onS,{passive:true});addEventListener('resize',()=>{meas();onS()});addEventListener('load',()=>{meas();onS()});setTimeout(meas,1500);
 tt.addEventListener('click',()=>scrollTo({top:0,behavior:rm?'auto':'smooth'}));
 })();
 </script>
