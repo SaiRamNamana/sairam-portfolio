@@ -192,7 +192,7 @@ footer h2{font-size:30px}
 .intro path{fill:none;stroke:var(--cyan);stroke-width:1.6;stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.1s var(--ease) .2s forwards}
 .intro circle{fill:var(--bg);stroke:var(--amber);stroke-width:1.6;opacity:0;animation:fade .4s ease 1s forwards}
 .intro-t{font-family:var(--display);font-size:22px;letter-spacing:.02em;opacity:0;animation:fade .6s ease .8s forwards}
-@keyframes introOut{to{transform:translateY(-100%);visibility:hidden}}
+@keyframes introOut{to{opacity:0;visibility:hidden}}
 .flip-inner{display:grid;flex:1;transform:perspective(1000px) rotateY(0);transform-style:preserve-3d;transition:transform .7s var(--ease)}
 .card.flipped .flip-inner{transform:perspective(1000px) rotateY(180deg)}
 .face{grid-area:1/1;display:flex;flex-direction:column;backface-visibility:hidden;-webkit-backface-visibility:hidden}
@@ -207,6 +207,9 @@ button.card-link{background:none;border:0;border-bottom:1px solid transparent;cu
 .totop circle{fill:none;stroke-width:2.5}.totop .trk{stroke:var(--border)}.totop .prg{stroke:var(--cyan);stroke-linecap:round;stroke-dasharray:119.4;stroke-dashoffset:119.4}
 @media(prefers-reduced-motion:reduce){.intro{display:none}}
 @media(max-width:760px){header.nav{backdrop-filter:none;background:rgba(15,23,32,.97)}.reveal{transform:none;transition:opacity .5s}}
+.hero{overflow:visible;--rw:min(520px,calc((140px + max(0px,(100vw - 1080px)/2))*2.174))}
+.hero-rings{width:var(--rw);height:var(--rw);right:calc(var(--pr) + var(--ps)/2 - var(--rw)/2)}
+@media(max-width:1060px){.hero-rings{width:min(440px,105vw);height:min(440px,105vw);right:auto}}
 </style>
 </head>
 <body>
